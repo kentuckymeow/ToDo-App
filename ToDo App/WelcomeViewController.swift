@@ -14,6 +14,7 @@ class WelcomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+       
         
         view.backgroundColor = .white
         view.addSubview(contentView)
@@ -25,14 +26,13 @@ class WelcomeViewController: UIViewController {
             contentView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             contentView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
-
+        
         // Do any additional setup after loading the view.
+        configure()
+        
     }
     
-    override func  viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        configure()
-    }
+    
     
     private func configure() {
         // set up scrollview
