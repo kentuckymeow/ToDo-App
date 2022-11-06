@@ -20,8 +20,8 @@ class WelcomeViewController: UIViewController {
         contentView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            contentView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1/2),
-            contentView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/3),
+            contentView.widthAnchor.constraint(equalTo: view.widthAnchor),
+            contentView.heightAnchor.constraint(equalTo: view.heightAnchor),
             contentView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             contentView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
@@ -39,34 +39,82 @@ class WelcomeViewController: UIViewController {
         scrollView.frame = contentView.bounds
         contentView.addSubview(scrollView)
         
-        let titles = ["Welcome","location","all set", "goe"]
+        let titles = ["Add your task to manage your daily shedule","Long press the task to edit or delete in one ","Let us give you a notification of you task on time", "Customize own theme color"]
         for x in 0..<4 {
             let pageView = UIView(frame: CGRect(x: CGFloat(x) *  contentView.frame.size.width , y: 0, width: contentView.frame.size.width, height: contentView.frame.size.height))
+            pageView.translatesAutoresizingMaskIntoConstraints = false
+            //let pageView = UIView()
+            //pageView.translatesAutoresizingMaskIntoConstraints = false
             scrollView.addSubview(pageView)
             
+            
+            
+            
             // Tittle, image , button
-            let label  = UILabel(frame: CGRect(x: 10, y: 10, width: pageView.frame.size.width-20 , height: 120))
-            let imageView  = UIImageView(frame: CGRect(x: 10, y: 10 + 120 + 10, width: pageView.frame.size.width - 20 , height: pageView.frame.size.height - 60 - 130 - 15))
-            let button  = UIButton(frame: CGRect(x: 10, y: pageView.frame.size.height - 60, width: pageView.frame.size.width - 20 , height: 50))
+            //let imageView  = UIImageView(frame: CGRect(x: 30, y: 10 , width: pageView.frame.size.width - 340, height: pageView.frame.size.height - 300))
+           // let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 300, height: 200))
+            let imageView = UIImageView()
+        
+           // let label  = UILabel(frame: CGRect(x: 30, y: 350, width: pageView.frame.size.width-60 , height: 120))
+           //let button  = UIButton(frame: CGRect(x: 180, y: pageView.frame.size.height - 80, width: pageView.frame.size.width - 330, height: 50))
+            let label = UILabel()
+            let button = UIButton()
+           
             
-            label.textAlignment = .center
-            label.font = UIFont(name: "Helvetica-Bold", size: 32)
-            pageView.addSubview(label)
-            label.text = titles[x]
-            
+//            let button = UIButton(frame: CGRect(x: self.contentView.frame.size.width/2.3, y: self.contentView.frame.size.height/1.1, width: self.contentView.frame.size.width/9, height: self.contentView.frame.size.height/17))
+//
             imageView.contentMode = .scaleAspectFit
             imageView.image = UIImage(named : "welcome_\(x)")
             pageView.addSubview(imageView)
+            imageView.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+
+                imageView.leftAnchor.constraint(equalTo: pageView.leftAnchor, constant: 30),
+                imageView.topAnchor.constraint(equalTo: pageView.topAnchor, constant: 150),
+                imageView.widthAnchor.constraint(equalToConstant: 70),
+                imageView.heightAnchor.constraint(equalTo: pageView.heightAnchor, multiplier: 0.3)
+                
+                //imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                //imageView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            ])
             
-            button.setTitleColor(.white, for: .normal)
-            button.backgroundColor = .black
-            button.setTitle("Countinue", for: .normal)
+            label.numberOfLines = 0
+            label.textAlignment = .left
+            label.font = UIFont(name: "Helvetica-Bold", size: 28)
+            pageView.addSubview(label)
+            label.text = titles[x]
+            
+            label.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+
+                label.leftAnchor.constraint(equalTo: pageView.leftAnchor, constant: 30),
+                label.topAnchor.constraint(equalTo: pageView.topAnchor, constant: 250),
+                label.widthAnchor.constraint(equalToConstant: 300),
+                label.heightAnchor.constraint(equalTo: pageView.heightAnchor, multiplier: 0.3)
+                
+            
+            ])
+            
+            button.setImage(UIImage(named: "next"), for: .normal)
             if x == 3 {
-                button.setTitle("go", for: .normal)
+                button.setImage(UIImage(named: "check mark"), for: .normal)
             }
+            
             button.addTarget(self, action: #selector(didTapButton(_:)), for: .touchUpInside)
+        
+            button.contentMode = .scaleAspectFit
             button.tag = x+1
+            
+            button.translatesAutoresizingMaskIntoConstraints = false
             pageView.addSubview(button)
+            NSLayoutConstraint.activate([
+                button.centerXAnchor.constraint(equalTo: pageView.centerXAnchor),
+                button.bottomAnchor.constraint(equalTo: pageView.bottomAnchor, constant: -100),
+                button.widthAnchor.constraint(equalToConstant: 100),
+                button.heightAnchor.constraint(equalTo: pageView.heightAnchor, multiplier: 0.2)
+            ])
+//
+            
             
         }
         

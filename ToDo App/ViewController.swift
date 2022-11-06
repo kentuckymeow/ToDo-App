@@ -17,17 +17,16 @@ class ViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
-    }
     
-    override func viewWillAppear(_ animated: Bool) {
-        if Core.shared.isNewUser() {
+        //if Core.shared.isNewUser() {
             // Show onboarding
             let vs =  WelcomeViewController()
             vs.modalPresentationStyle = .fullScreen
             present(vs, animated: true)
-        }
+        //}
+        
     }
+    
 
 
 }
